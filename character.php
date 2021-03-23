@@ -1,13 +1,13 @@
 <?php
 
-if(empty($_GET['name'])){
-    $karakter = 'Bowser';
+if(empty($_GET['id'])){
+    $karakter = 1;
 } else {
-    $karakter = $_GET['name'];
+    $karakter = $_GET['id'];
 };
 
     include_once("logic.php");
-    $sql = 'SELECT * FROM `characters` WHERE `name` = "'.$karakter.'"';
+    $sql = 'SELECT * FROM `characters` WHERE `id` = '.$karakter;
     $sth = $conn->prepare($sql);
     $sth->execute();
     $result = $sth->fetchall();
@@ -22,6 +22,7 @@ if(empty($_GET['name'])){
     <title>Character - <?php print_r($result[0]['name']) ?></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="resources/css/style.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="resources/images/<?php print_r($result[0]['avatar']) ?>"/>
 </head>
 <body>
 <header><h1><?php print_r($result[0]['name']) ?></h1>

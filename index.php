@@ -1,3 +1,10 @@
+<?php include_once("logic.php");
+    $sql = 'SELECT * FROM `characters` WHERE 1';
+    $sth = $conn->prepare($sql);
+    $sth->execute();
+    $result = $sth->fetchall(); ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +14,42 @@
     <link href="resources/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<header><h1>Alle [X] characters uit de database</h1>
+<header><h1>Alle <?php echo count($result) ?> characters uit de database</h1>
 
 </header>
 <div id="container">
-    <a class="item" href="character.php">
+
+
+<?php
+
+$position = "left";
+
+foreach ($result as $value) {
+
+?> 
+
+    <a class="item" href="character.php?id=<?php print_r($value['id']) ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/bowser.jpg">
+            <img class="avatar" src="resources/images/<?php print_r($value['avatar']) ?>">
         </div>
         <div class="right">
-            <h2>Bowser</h2>
+            <h2><?php print_r($value['name']) ?></h2>
             <div class="stats">
                 <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> 10000</li>
-                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> 400</li>
-                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> 100</li>
+                    <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php print_r($value['health']) ?></li>
+                    <li><span class="fa-li"><i class="fas fa-fist-raised"></i></span> <?php print_r($value['attack']) ?></li>
+                    <li><span class="fa-li"><i class="fas fa-shield-alt"></i></span> <?php print_r($value['defense']) ?></li>
                 </ul>
-            </div>
+            </div>   
         </div>
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
     </a>
+
+<?php } ?>
+
+
+
 </div>
-<footer>&copy; [jenaam] 2020</footer>
+<footer>&copy; Sven de Ruijter 2021</footer>
 </body>
 </html>
