@@ -30,7 +30,7 @@ if(empty($_GET['id'])){
 <div id="container">
     <div class="detail">
         <div class="left">
-            <img class="avatar" src="resources/images/<?php print_r($result[0]['avatar']) ?>">
+            <img class="avatar" alt="<?php print_r($value['name']) ?>" src="resources/images/<?php print_r($result[0]['avatar']) ?>">
             <div class="stats" style="background-color: <?php print_r($result[0]['color']) ?>">
                 <ul class="fa-ul">
                     <li><span class="fa-li"><i class="fas fa-heart"></i></span> <?php print_r($result[0]['health']) ?></li>

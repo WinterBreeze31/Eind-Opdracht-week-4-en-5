@@ -1,5 +1,5 @@
 <?php include_once("logic.php");
-    $sql = 'SELECT * FROM `characters` WHERE 1';
+    $sql = 'SELECT * FROM `characters` WHERE 1 ORDER BY `name`';
     $sth = $conn->prepare($sql);
     $sth->execute();
     $result = $sth->fetchall(); ?>
@@ -30,7 +30,7 @@ foreach ($result as $value) {
 
     <a class="item" href="character.php?id=<?php print_r($value['id']) ?>">
         <div class="left">
-            <img class="avatar" src="resources/images/<?php print_r($value['avatar']) ?>">
+            <img class="avatar" alt="<?php print_r($value['name']) ?>" src="resources/images/<?php print_r($value['avatar']) ?>">
         </div>
         <div class="right">
             <h2><?php print_r($value['name']) ?></h2>
